@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The Rootkit Hunter Project</title>
+  <style>
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+background-color: #1a1a1a;
+border: none;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The Rootkit Hunter Project</h1>
+</header>
+<h2 id="welcome-to-the-rootkit-hunter-project-site">Welcome to the
+Rootkit Hunter Project Site</h2>
+<h3 id="about">About</h3>
+<p>This is the website for rkhunter.sh a tool a command line utility to
+check computers running UNIX (or clones) for known root kits, other
+unwanted tools and changed files. The project was started in 2003, by
+Michael Boelen, and from 2006 was continued by the Rootkit Hunter
+Development Team led by John Horne and unSpawn. Since December 2023 it
+has been sponsored by <a href="https://www.dogsbody.com">Dogsbody
+Technology</a></p>
+<h3 id="rootkit-hunter-current-release">Rootkit Hunter current
+release</h3>
+<p>Rootkit Hunter is currently at version 1.4.6, released on February
+20th 2018. We are working on addressing issues brought over from
+SourceForge, and new releases will be found on on the project’s GitHub
+<a href="https://github.com/Rootkit-Hunter/rkhunter/releases">Release
+Page</a></p>
+<h3 id="downloading-and-running-rootkit-hunter">Downloading and running
+Rootkit Hunter</h3>
+<p>To run Rootkit Hunter please install or upgrade to <a href="https://github.com/Rootkit-Hunter/rkhunter">Rootkit Hunter version
+1.4.6</a>, and read the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/README">README</a>
+file.</p>
+<ul>
+<li>If you have any questions about what Rootkit Hunter reports, or if
+you encounter a runtime or configuration problem, then please first
+consult the <a href="https://sourceforge.net/p/rkhunter/wiki/index/">Rootkit Hunter
+installation tutorial</a> (if applicable), the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/FAQ">Rootkit
+Hunter FAQ</a> and the <a href="https://sourceforge.net/p/rkhunter/mailman/rkhunter-users/">rkhunter-users
+mailing list archives.</a></li>
+<li>If your question is not answered in the FAQ or the mailing list
+archives, please join (subscribe) to the <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-users">rkhunter-users
+mailing list</a> and ask.</li>
+<li>If you would like to be kept informed of updates we also have a
+(very) low volume <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-announce">rkhunter-announce
+mailing list</a>.</li>
+<li>If you would like to report a bug, downstream (package maintainer)
+changes or supply a patch, then please use the <a href="https://github.com/Rootkit-Hunter/rkhunter/issues">Rootkit Hunter
+bug tracker</a>. If unsure, then please first check on the <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-users">rkhunter-users
+mailing list</a>.</li>
+</ul>
+<h3 id="acknowledgements">Acknowledgements</h3>
+<p>Thanks to the team and all contributors who made this release
+possible by providing code, submitting ideas, bugs, fixes,
+documentation, helping out on the rkhunter-users mailing list and
+promoting Rootkit Hunter. For more details please see the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/ACKNOWLEDGMENTS">ACKNOWLEDGMENTS</a>
+file.</p>
+</body>
+</html>

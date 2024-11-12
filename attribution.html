@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Page Needs –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="UTF-8">
+    <title>The Rootkit Hunter project</title>
+    <meta name="description" content="The homepage of the rkhunter project" />
+    <!-- Open Graph date -->
+    <meta name="author" content="rkhunter project">
+    <!-- Additional metadata -->
+    <meta property="og:title" content="The Rootkit Hunter project" />
+    <meta property="og:site_name" content="The Rootkit Hunter project" />
+    <meta property="og:url" content="https://www.rkhunter.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{.Site.BaseURL}}{{.Params.pageimage}}" />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- RSS Feeds -->
+    <link rel="alternate" type="application/rss+xml" title="Full site feed" href="https://rss.rkhunter.dev/index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Main blog feed"
+        href="https://rss.rkhunter.dev/blog/index.xml" />
+
+    <!-- Favicon, Touch Icon and Canonical -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" sizes="192x192" href="/static/nice-highres.png" />
+    <link rel="apple-touch-icon" href="/static//apple-touch-icon.png" />
+    <link rel="canonical" href="{{ .Permalink }}" />
+
+    <!-- Mobile Specific Metas –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+    <style>
+        html {
+            min-height: 100%;
+            width: 100%;
+            position: relative;
+            font-size: 10px;
+        }
+
+        body {
+            background-image: url(/icons/random_grey_variations.png);
+            color: #3a3a3a;
+            font-family: Georgia, serif;
+            margin: 0px;
+            font-size: 1.7em;
+            /* currently ems cause chrome bug misinterpreting rems on body element */
+            line-height: 1.7;
+            background-color: #35495e;
+        }
+
+        /* Spacing */
+        blockquote,
+        dl,
+        figure,
+        form,
+        ol,
+        p,
+        pre,
+        table,
+        ul {
+            margin-bottom: 2rem;
+            list-style-type: disc;
+        }
+
+        .page-container {
+            background-color: #fff;
+            max-width: 57em;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .page-content {
+            padding: 0 6em;
+        }
+
+        p {
+            color: #3a3a3a;
+            margin-top: 0;
+        }
+
+        /* Links */
+        a {
+            color: #379634;
+        }
+
+        a:hover {
+            color: #379634;
+        }
+
+        /* Navbar and header */
+        .navbar {
+            font-family: Tahoma, FreeSans, sans-serif;
+            font-weight: 300;
+            background-color: #379634;
+            padding: 10px;
+        }
+
+        .nav-container {
+            margin: 0px auto;
+        }
+
+        .navbar ul {
+            text-align: center;
+            line-height: inherit;
+            list-style-type: none;
+            display: block;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .navbar li {
+            display: inline-block;
+            position: relative;
+            margin: 0px 10px;
+            line-height: inherit !important;
+        }
+
+        .navbar a {
+            color: #fff;
+            font-size: 1.2em;
+            letter-spacing: 1px;
+            display: inline-block;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+
+        /* Footer and footernore - styles the links and text in the footer */
+        .footer {
+            background-color: #379634;
+            padding: 20px !important;
+        }
+
+        .footernote {
+            line-height: 2em;
+            text-align: center;
+            color: #fff;
+            font-size: 0.8em;
+            margin-bottom: 0;
+        }
+
+        .footernote a {
+            color: #fff;
+        }
+
+        .footernote a:hover {
+            color: #fff;
+        }
+
+        /* Single pages */
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .page-title h1 {
+            font-size: 2.5em;
+        }
+
+        .page-title h2 {
+            font-size: 1em;
+        }
+
+        /*Button Pages*/
+
+        .button-page-title {
+            text-align: center;
+            margin: 40px 0 0
+        }
+
+        .button-page-title h1 {
+            font-size: 2em;
+        }
+
+        .button-page-title h2 {
+            font-size: 1em;
+        }
+
+        /* Typography */
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Tahoma, FreeSans, sans-serif;
+            font-weight: 400;
+            color: #111111;
+            letter-spacing: normal;
+            padding: 0 0 10px;
+            margin: 10px 0 10px;
+            line-height: 1.2em;
+        }
+
+        h1 {
+            font-size: 1.8em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.2em;
+        }
+
+        h4 {
+            font-size: 1.1em;
+        }
+
+        h5 {
+            font-size: 1em;
+        }
+
+        h6 {
+            font-size: 1em;
+        }
+
+        /* Images and captions */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        figure {
+            display: block;
+            margin: 1em 0px;
+            text-align: center;
+        }
+
+        figcaption {
+            text-align: center;
+            color: #444;
+            font-size: 0.8em;
+            padding: 0 10px;
+            margin: 0 20px;
+        }
+
+        /* Frontpage styling specifics */
+        .fronttitlewrap {
+            background-color: #379634;
+            padding: 40px;
+            margin: 0px;
+        }
+
+        .fronttitle {
+            max-width: 750px;
+            margin: 30px auto;
+        }
+
+        .fronttitle h1,
+        .fronttitle h2 {
+            color: #fff;
+            text-align: center;
+        }
+
+        .fronttitle h1 {
+            font-size: 4em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin: 0 0 23px 0;
+        }
+
+        .fronttitle h2 {
+            font-size: 2em;
+            margin: 23px 0 23px 0;
+        }
+
+        .frontnavwrap,
+        .frontbuttons,
+        .frontinfowrap,
+        .fronttextwrap,
+        .guidebuttons {
+            display: flex;
+            display: -webkit-box;
+            /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+            display: -ms-flexbox;
+            /* TWEENER - IE 10 */
+            display: -webkit-flex;
+            /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+            flex-direction: row;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-wrap: wrap;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            justify-content: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            align-content: center;
+            -webkit-align-content: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .frontbuttonwrap,
+        .frontinfowrap,
+        .fronttextwrap,
+        .frontlogowrap,
+        .fronttextwrap {
+            background-color: #fff;
+        }
+
+        .frontbuttonwrap {
+            padding-top: 30px;
+        }
+
+        .frontnavwrap {
+            background-color: #35495e;
+        }
+
+        .frontnavwrap h2,
+        .frontnavwrap p {
+            color: #fff
+        }
+
+        .fronttextpara {
+            font-size: 1.2em;
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .frontnavimg {
+            flex: 0 1 275;
+            -webkit-box-flex: 0 1 275;
+            /* OLD - iOS 6-, Safari 3.1-6 */
+            -webkit-flex: 0 1 275;
+            /* Safari 6.1+. iOS 7.1+, BB10 */
+            -ms-flex: 0 1 275;
+            /* IE 10 */
+            width: 275px;
+            text-align: center;
+            margin: 0 30px;
+        }
+
+        .frontlogo {
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+            padding: 50px 30px 0;
+        }
+
+        .frontlogo>img {
+            width: 50%;
+            /* Control width */
+            height: auto;
+            /* Maintain aspect ratio */
+        }
+
+        .buttonimg {
+            flex: 0 1 200;
+            -webkit-box-flex: 0 1 200;
+            /* OLD - iOS 6-, Safari 3.1-6 */
+            -webkit-flex: 0 1 200;
+            /* Safari 6.1+. iOS 7.1+, BB10 */
+            -ms-flex: 0 1 200;
+            /* IE 10 */
+            width: 200px;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .buttonimg>.imglink>h2 {
+            color: #379634;
+        }
+
+        .frontbuttons>.frontnavimg a {
+            color: #333;
+        }
+
+        .frontnavwrap>.frontnavimg a {
+            color: #fff;
+        }
+
+        .frontinfowrap>.frontnavimg a {
+            color: #379634;
+        }
+
+        /* Media Queries */
+        @media (max-width: 800px) {
+            .fronttitle h1 {
+                font-size: 3em;
+            }
+
+            .fronttitle h2 {
+                font-size: 1.7em;
+            }
+
+            .page-content {
+                padding: 0 3em;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 1.5em;
+            }
+
+            .fronttitle h1 {
+                font-size: 2em;
+            }
+
+            .fronttitle h2 {
+                font-size: 1.5em;
+            }
+
+            .page-content {
+                padding: 0 2em;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .fronttitle h1,
+            .about-header h1,
+            .about-value h1 {
+                font-size: 1.5em;
+            }
+
+            .fronttitle h2 {
+                font-size: 1.2em;
+            }
+
+            .page-content {
+                padding: 0 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="">
+                <li> <a href="/"> Home </a></li>
+                <li> <a href="https://rss.rkhunter.dev" class=""> RSS </a></li>
+                <li> <a href="https://docs.rkhunter.dev/features" class=""> Features </a></li>
+                <li> <a href="https://docs.rkhunter.dev/faq" class=""> FAQ </a></li>
+                <li> <a href="https://github.com/Rootkit-Hunter/rkhunter/releases" class=""> Downloads </a></li>
+                <li> <a href="https://docs.rkhunter.dev" class=""> Docs </a></li>
+                <li> <a href="https://github.com/Rootkit-Hunter/rkhunter/issues" class=""> Issues </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-content">
+            <div class="page-title">
+                <h1>Attribution of Licensed Works</h1>
+                <h2>TRYING TO DO THE RIGHT THING...</h2>
+            </div>
+
+
+            <p>Due to the design of this site it is not possible to provide attribution to the original creator
+                right next to the licensed content. This page therefore serves as a central repository for the
+                attribution of licensed content.</p>
+
+            <h1 id="icons">Icons</h1>
+
+            <p>All licensed icons used throughout this site will be attributed here.</p>
+
+            <h2 id="front-page-icons">Front Page Icons</h2>
+
+            <p><img src="/icons/github.png" style="max-width:125px;" alt="github-character-silhouette" /></p>
+
+            <p><a
+                    href="https://www.flaticon.com/free-icon/github-character-silhouette_23957">github-character-silhouette</a>
+            </p>
+
+            <p>Icon made by <a href="http://www.icomoon.io" title="Icomoon">Icomoon</a> from <a
+                    href="https://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a
+                    href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>.
+            </p>
+
+            <p><img src="/icons/download.png" style="max-width:125px;" alt="Circular down arrow button" />
+                <img src="/icons/docs.png" style="max-width:125px;background-color:grey;"
+                    alt="Options circular button" />
+                <img src="/icons/faq.png" style="max-width:125px;background-color:grey;"
+                    alt="Circular question mark button" />
+                <img src="/icons/issues.png" style="max-width:125px;background-color:grey;"
+                    alt="Avatar inside a circle" />
+            </p>
+
+            <p><em>Left &gt; right</em></p>
+
+            <ol>
+                <li><a href="https://www.flaticon.com/free-icon/circular-down-arrow-button_78300">Circular down arrow
+                        button</a> - modified by switching colour to #aa0066.</li>
+                <li><a href="https://www.flaticon.com/free-icon/options-circular-button_78348">Options circular
+                        button</a></li>
+                <li><a href="https://www.flaticon.com/free-icon/circular-question-mark-button_78299">Circular question
+                        mark button</a></li>
+                <li><a href="https://www.flaticon.com/free-icon/avatar-inside-a-circle_78373">Avatar inside a circle</a>
+                </li>
+            </ol>
+
+            <p>Icons made by <a href="http://niceandserious.com" title="Nice and Serious">Nice and Serious</a> from <a
+                    href="https://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a
+                    href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-text">
+            <p class="footernote">
+                Site design Copyright &copy; Dogsbody Ltd; <a href="http://creativecommons.org/licenses/by/4.0/">some
+                    rights
+                    reserved.</a>
+                Find us at
+            </p>
+            <p class="footernote"><a href="/attribution/">Attribution of Licensed Works</a></p>
+            <p class="footernote"><a href="/acknowledgements/">Acknowledgements</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

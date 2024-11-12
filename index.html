@@ -1,220 +1,579 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
-<head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>The Rootkit Hunter Project</title>
-  <style>
-html {
-color: #1a1a1a;
-background-color: #fdfdfd;
-}
-body {
-margin: 0 auto;
-max-width: 36em;
-padding-left: 50px;
-padding-right: 50px;
-padding-top: 50px;
-padding-bottom: 50px;
-hyphens: auto;
-overflow-wrap: break-word;
-text-rendering: optimizeLegibility;
-font-kerning: normal;
-}
-@media (max-width: 600px) {
-body {
-font-size: 0.9em;
-padding: 12px;
-}
-h1 {
-font-size: 1.8em;
-}
-}
-@media print {
-html {
-background-color: white;
-}
-body {
-background-color: transparent;
-color: black;
-font-size: 12pt;
-}
-p, h2, h3 {
-orphans: 3;
-widows: 3;
-}
-h2, h3, h4 {
-page-break-after: avoid;
-}
-}
-p {
-margin: 1em 0;
-}
-a {
-color: #1a1a1a;
-}
-a:visited {
-color: #1a1a1a;
-}
-img {
-max-width: 100%;
-}
-svg {
-height: auto;
-max-width: 100%;
-}
-h1, h2, h3, h4, h5, h6 {
-margin-top: 1.4em;
-}
-h5, h6 {
-font-size: 1em;
-font-style: italic;
-}
-h6 {
-font-weight: normal;
-}
-ol, ul {
-padding-left: 1.7em;
-margin-top: 1em;
-}
-li > ol, li > ul {
-margin-top: 0;
-}
-blockquote {
-margin: 1em 0 1em 1.7em;
-padding-left: 1em;
-border-left: 2px solid #e6e6e6;
-color: #606060;
-}
-code {
-font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
-font-size: 85%;
-margin: 0;
-hyphens: manual;
-}
-pre {
-margin: 1em 0;
-overflow: auto;
-}
-pre code {
-padding: 0;
-overflow: visible;
-overflow-wrap: normal;
-}
-.sourceCode {
-background-color: transparent;
-overflow: visible;
-}
-hr {
-background-color: #1a1a1a;
-border: none;
-height: 1px;
-margin: 1em 0;
-}
-table {
-margin: 1em 0;
-border-collapse: collapse;
-width: 100%;
-overflow-x: auto;
-display: block;
-font-variant-numeric: lining-nums tabular-nums;
-}
-table caption {
-margin-bottom: 0.75em;
-}
-tbody {
-margin-top: 0.5em;
-border-top: 1px solid #1a1a1a;
-border-bottom: 1px solid #1a1a1a;
-}
-th {
-border-top: 1px solid #1a1a1a;
-padding: 0.25em 0.5em 0.25em 0.5em;
-}
-td {
-padding: 0.125em 0.5em 0.25em 0.5em;
-}
-header {
-margin-bottom: 4em;
-text-align: center;
-}
-#TOC li {
-list-style: none;
-}
-#TOC ul {
-padding-left: 1.3em;
-}
-#TOC > ul {
-padding-left: 0;
-}
-#TOC a:not(:hover) {
-text-decoration: none;
-}
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+<html lang="en">
 
-ul.task-list[class]{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-font-size: inherit;
-width: 0.8em;
-margin: 0 0.8em 0.2em -1.6em;
-vertical-align: middle;
-}
-</style>
+<head>
+  <!-- Basic Page Needs –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="UTF-8">
+  <title>The Rootkit Hunter project</title>
+  <meta name="description" content="The homepage of the rkhunter project" />
+  <!-- Open Graph date -->
+  <meta name="author" content="rkhunter project">
+  <!-- Additional metadata -->
+  <meta property="og:title" content="The Rootkit Hunter project" />
+  <meta property="og:site_name" content="The Rootkit Hunter project" />
+  <meta property="og:url" content="https://www.rkhunter.dev" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{{.Site.BaseURL}}{{.Params.pageimage}}" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- RSS Feeds -->
+  <link rel="alternate" type="application/rss+xml" title="Full site feed" href="https://rss.rkhunter.dev/index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Main blog feed"
+    href="https://rss.rkhunter.dev/blog/index.xml" />
+
+  <!-- Favicon, Touch Icon and Canonical -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/static/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/static/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/static/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" sizes="192x192" href="/static/nice-highres.png" />
+  <link rel="apple-touch-icon" href="/static//apple-touch-icon.png" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+  <!-- Mobile Specific Metas –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <style>
+    html {
+      min-height: 100%;
+      width: 100%;
+      position: relative;
+      font-size: 10px;
+    }
+
+    body {
+      background-image: url(/icons/random_grey_variations.png);
+      color: #3a3a3a;
+      font-family: Georgia, serif;
+      margin: 0px;
+      font-size: 1.7em;
+      /* currently ems cause chrome bug misinterpreting rems on body element */
+      line-height: 1.7;
+      background-color: #464c56;
+    }
+
+    /* Spacing */
+    blockquote,
+    dl,
+    figure,
+    form,
+    ol,
+    p,
+    pre,
+    table,
+    ul {
+      margin-bottom: 2rem;
+      list-style-type: disc;
+    }
+
+    .page-container {
+      background-color: #fff;
+      max-width: 57em;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .page-content {
+      padding: 0 6em;
+    }
+
+    p {
+      color: #3a3a3a;
+      margin-top: 0;
+    }
+
+    /* Links */
+    a {
+      color: #379634;
+    }
+
+    a:hover {
+      color: #379634;
+    }
+
+    /* Navbar and header */
+    .navbar {
+      font-family: Tahoma, FreeSans, sans-serif;
+      font-weight: 300;
+      background-color: #379634;
+      padding: 10px;
+    }
+
+    .nav-container {
+      margin: 0px auto;
+    }
+
+    .navbar ul {
+      text-align: center;
+      line-height: inherit;
+      list-style-type: none;
+      display: block;
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .navbar li {
+      display: inline-block;
+      position: relative;
+      margin: 0px 10px;
+      line-height: inherit !important;
+    }
+
+    .navbar a {
+      color: #fff;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+      display: inline-block;
+      width: 100%;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+
+    /* Footer and footernore - styles the links and text in the footer */
+    .footer {
+      background-color: #379634;
+      padding: 20px !important;
+    }
+
+    .footernote {
+      line-height: 2em;
+      text-align: center;
+      color: #fff;
+      font-size: 0.8em;
+      margin-bottom: 0;
+    }
+
+    .footernote a {
+      color: #fff;
+    }
+
+    .footernote a:hover {
+      color: #fff;
+    }
+
+    /* Single pages */
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .page-title h1 {
+      font-size: 2.5em;
+    }
+
+    .page-title h2 {
+      font-size: 1em;
+    }
+
+    /*Button Pages*/
+
+    .button-page-title {
+      text-align: center;
+      margin: 40px 0 0
+    }
+
+    .button-page-title h1 {
+      font-size: 2em;
+    }
+
+    .button-page-title h2 {
+      font-size: 1em;
+    }
+
+    /* Typography */
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: Tahoma, FreeSans, sans-serif;
+      font-weight: 400;
+      color: #111111;
+      letter-spacing: normal;
+      padding: 0 0 10px;
+      margin: 10px 0 10px;
+      line-height: 1.2em;
+    }
+
+    h1 {
+      font-size: 1.8em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    h4 {
+      font-size: 1.1em;
+    }
+
+    h5 {
+      font-size: 1em;
+    }
+
+    h6 {
+      font-size: 1em;
+    }
+
+    /* Images and captions */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    figure {
+      display: block;
+      margin: 1em 0px;
+      text-align: center;
+    }
+
+    figcaption {
+      text-align: center;
+      color: #444;
+      font-size: 0.8em;
+      padding: 0 10px;
+      margin: 0 20px;
+    }
+
+    /* Frontpage styling specifics */
+    .fronttitlewrap {
+      background-color: #379634;
+      padding: 40px;
+      margin: 0px;
+    }
+
+    .fronttitle {
+      max-width: 750px;
+      margin: 30px auto;
+    }
+
+    .fronttitle h1,
+    .fronttitle h2 {
+      color: #fff;
+      text-align: center;
+    }
+
+    .fronttitle h1 {
+      font-size: 4em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: 0 0 23px 0;
+    }
+
+    .fronttitle h2 {
+      font-size: 2em;
+      margin: 23px 0 23px 0;
+    }
+
+    .frontnavwrap,
+    .frontbuttons,
+    .frontinfowrap,
+    .fronttextwrap,
+    .guidebuttons {
+      display: flex;
+      display: -webkit-box;
+      /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+      display: -ms-flexbox;
+      /* TWEENER - IE 10 */
+      display: -webkit-flex;
+      /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+      flex-direction: row;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-wrap: wrap;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      justify-content: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      align-content: center;
+      -webkit-align-content: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .frontbuttonwrap,
+    .frontinfowrap,
+    .fronttextwrap,
+    .frontlogowrap,
+    .fronttextwrap {
+      background-color: #fff;
+    }
+
+    .frontbuttonwrap {
+      padding-top: 30px;
+    }
+
+    .frontnavwrap {
+      background-color: #35495e;
+    }
+
+    .frontnavwrap h2,
+    .frontnavwrap p {
+      color: #fff
+    }
+
+    .fronttextpara {
+      font-size: 1.2em;
+      max-width: 750px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .frontnavimg {
+      flex: 0 1 275;
+      -webkit-box-flex: 0 1 275;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      -webkit-flex: 0 1 275;
+      /* Safari 6.1+. iOS 7.1+, BB10 */
+      -ms-flex: 0 1 275;
+      /* IE 10 */
+      width: 275px;
+      text-align: center;
+      margin: 0 30px;
+    }
+
+    .frontlogo {
+      display: flex;
+      justify-content: center;
+      /* Center horizontally */
+      align-items: center;
+      /* Center vertically */
+      padding: 50px 30px 0;
+    }
+
+    .frontlogo > img {
+      width: 50%;
+      /* Control width */
+      height: auto;
+      /* Maintain aspect ratio */
+    }
+
+    .buttonimg {
+      flex: 0 1 200;
+      -webkit-box-flex: 0 1 200;
+      /* OLD - iOS 6-, Safari 3.1-6 */
+      -webkit-flex: 0 1 200;
+      /* Safari 6.1+. iOS 7.1+, BB10 */
+      -ms-flex: 0 1 200;
+      /* IE 10 */
+      width: 200px;
+      text-align: center;
+      margin: 0 10px;
+    }
+
+    .buttonimg>.imglink>h2 {
+      color: #379634;
+    }
+
+    .frontbuttons>.frontnavimg a {
+      color: #333;
+    }
+
+    .frontnavwrap>.frontnavimg a {
+      color: #fff;
+    }
+
+    .frontinfowrap>.frontnavimg a {
+      color: #379634;
+    }
+
+    /* Media Queries */
+    @media (max-width: 800px) {
+      .fronttitle h1 {
+        font-size: 3em;
+      }
+
+      .fronttitle h2 {
+        font-size: 1.7em;
+      }
+
+      .page-content {
+        padding: 0 3em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 1.5em;
+      }
+
+      .fronttitle h1 {
+        font-size: 2em;
+      }
+
+      .fronttitle h2 {
+        font-size: 1.5em;
+      }
+
+      .page-content {
+        padding: 0 2em;
+      }
+    }
+
+    @media (max-width: 450px) {
+
+      .fronttitle h1,
+      .about-header h1,
+      .about-value h1 {
+        font-size: 1.5em;
+      }
+
+      .fronttitle h2 {
+        font-size: 1.2em;
+      }
+
+      .page-content {
+        padding: 0 1em;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header id="title-block-header">
-<h1 class="title">The Rootkit Hunter Project</h1>
-</header>
-<h2 id="welcome-to-the-rootkit-hunter-project-site">Welcome to the
-Rootkit Hunter Project Site</h2>
-<h3 id="about">About</h3>
-<p>This is the website for rkhunter.sh a tool a command line utility to
-check computers running UNIX (or clones) for known root kits, other
-unwanted tools and changed files. The project was started in 2003, by
-Michael Boelen, and from 2006 was continued by the Rootkit Hunter
-Development Team led by John Horne and unSpawn. Since December 2023 it
-has been sponsored by <a href="https://www.dogsbody.com">Dogsbody
-Technology</a></p>
-<h3 id="rootkit-hunter-current-release">Rootkit Hunter current
-release</h3>
-<p>Rootkit Hunter is currently at version 1.4.6, released on February
-20th 2018. We are working on addressing issues brought over from
-SourceForge, and new releases will be found on on the project’s GitHub
-<a href="https://github.com/Rootkit-Hunter/rkhunter/releases">Release
-Page</a></p>
-<h3 id="downloading-and-running-rootkit-hunter">Downloading and running
-Rootkit Hunter</h3>
-<p>To run Rootkit Hunter please install or upgrade to <a href="https://github.com/Rootkit-Hunter/rkhunter">Rootkit Hunter version
-1.4.6</a>, and read the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/README">README</a>
-file.</p>
-<ul>
-<li>If you have any questions about what Rootkit Hunter reports, or if
-you encounter a runtime or configuration problem, then please first
-consult the <a href="https://sourceforge.net/p/rkhunter/wiki/index/">Rootkit Hunter
-installation tutorial</a> (if applicable), the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/FAQ">Rootkit
-Hunter FAQ</a> and the <a href="https://sourceforge.net/p/rkhunter/mailman/rkhunter-users/">rkhunter-users
-mailing list archives.</a></li>
-<li>If your question is not answered in the FAQ or the mailing list
-archives, please join (subscribe) to the <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-users">rkhunter-users
-mailing list</a> and ask.</li>
-<li>If you would like to be kept informed of updates we also have a
-(very) low volume <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-announce">rkhunter-announce
-mailing list</a>.</li>
-<li>If you would like to report a bug, downstream (package maintainer)
-changes or supply a patch, then please use the <a href="https://github.com/Rootkit-Hunter/rkhunter/issues">Rootkit Hunter
-bug tracker</a>. If unsure, then please first check on the <a href="https://lists.sourceforge.net/mailman/listinfo/rkhunter-users">rkhunter-users
-mailing list</a>.</li>
-</ul>
-<h3 id="acknowledgements">Acknowledgements</h3>
-<p>Thanks to the team and all contributors who made this release
-possible by providing code, submitting ideas, bugs, fixes,
-documentation, helping out on the rkhunter-users mailing list and
-promoting Rootkit Hunter. For more details please see the <a href="https://github.com/Rootkit-Hunter/rkhunter/blob/master/files/ACKNOWLEDGMENTS">ACKNOWLEDGMENTS</a>
-file.</p>
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="">
+        <li> <a href="/"> Home </a></li>
+        <li> <a href="https://rss.rkhunter.dev" class=""> RSS </a></li>
+        <li> <a href="https://docs.rkhunter.dev/features" class=""> Features </a></li>
+        <li> <a href="https://docs.rkhunter.dev/faq" class=""> FAQ </a></li>
+        <li> <a href="https://github.com/Rootkit-Hunter/rkhunter/releases" class=""> Downloads </a></li>
+        <li> <a href="https://docs.rkhunter.dev" class=""> Docs </a></li>
+        <li> <a href="https://github.com/Rootkit-Hunter/rkhunter/issues" class=""> Issues </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="frontcontent">
+    <div class="fronttitlewrap">
+      <div class="fronttitle">
+        <h1>An Intrusion Detection tool for Unix Clones</h1>
+      </div>
+    </div>
+
+    <div class="frontlogowrap">
+      <div class="frontlogo">
+        <img src="/icons/rkhunter-main-col.png" alt="rkhunter on GitHub" />
+      </div>
+    </div>
+    <div class="frontbuttonwrap">
+      <div class="frontbuttons">
+        <div class="frontnavimg">
+          <a class="imglink" href="https://github.com/Rootkit-Hunter/rkhunter">
+            <h2>GitHub</h2>
+            <div class="fronticon">
+              <img src="/icons/github.png" alt="rkhunter on GitHub" height="215" width="215" />
+            </div>
+          </a>
+        </div>
+        <div class="frontnavimg">
+          <a class="imglink" href="https://github.com/Rootkit-Hunter/rkhunter/releases">
+            <h2>Download</h2>
+            <div class="fronticon">
+              <img src="/icons/download.png" alt="Download rkhunter" height="215" width="215" />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="fronttextwrap">
+      <div class="fronttextpara">
+        <p>This is the website for rkhunter.sh a tool a command line utility to check computers running UNIX (or clones)
+          for known root kits, other unwanted tools and changed files.</p>
+        <p>The project was started in 2003, by Michael Boelen, and from 2006 was continued by the Rootkit Hunter
+          Development Team led by John Horne and unSpawn.</p>
+        <p>Since December 2023 it has been sponsored by <a href="https://www.dogsbody.com">Dogsbody Technology.</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!--This is the blue nav wrap-->
+  <div class="frontnavwrap">
+    <div class="frontnavimg">
+      <a class="imglink" href="https://docs.rkhunter.dev">
+        <h2>Docs</h2>
+        <div class="fronticon">
+          <img src="/icons/docs.png" alt="rkhunter documentation" height="215" width="215" />
+        </div>
+      </a>
+      <p>
+        Installation and usage guides, complete with copy and paste examples.
+      </p>
+    </div>
+    <div class="frontnavimg">
+      <a class="imglink" href="/faq/">
+        <h2>FAQ</h2>
+        <div class="fronticon">
+          <img src="/icons/faq.png" alt="rkhunter FAQs" height="215" width="215" />
+        </div>
+      </a>
+      <p>
+        Got a question? Chances are it's been answered already in the FAQ.
+      </p>
+    </div>
+    <div class="frontnavimg">
+      <a class="imglink" href="https://github.com/Rootkit-Hunter/rkhunter/issues">
+        <h2>Forums</h2>
+        <div class="fronticon">
+          <img src="/icons/issues.png" alt="rkhunter GitHub Issues" height="215" width="215" />
+        </div>
+      </a>
+      <p>
+        Got a bug to report? Raise an issue on GitHub.
+      </p>
+    </div>
+  </div>
+
+  <!--This is the text wrap-->
+  <div class="frontinfowrap">
+    <div class="frontnavimg">
+
+      <h2>Open Source</h2>
+      <p>View the source, fork the code or submit your bug fixes. rkhunter is open and community led.</p>
+      <p>Want to contribute to rkhunter? Then get involved!</p>
+      <p><a href="https://github.com/Rootkit-Hunter/rkhunter">View rkhunter on GitHub</a></p>
+    </div>
+    <div class="frontnavimg">
+      <h2>Free, free & free!</h2>
+      <p>Released under GNU GPL v2.0, rkhunter respects all the freedoms that define Open Source software.</p>
+      <p>Oh, and don't forget it's free, as in 'free beer', too!</p>
+      <p><a href="http://www.gnu.org/licenses/gpl-2.0.en.html">Read more about GNU GPL</a></p>
+    </div>
+    <div class="frontnavimg">
+      <h2>Easy to use</h2>
+      <p>As an easy to configure CLI tool, rkhunter is available for use almost everywhere.</p>
+      <p>Our documentation will get you started in no time!</p>
+      <p><a href="https://docs.rkhunter.dev/">View the rkhunter docs</a></p>
+    </div>
+  </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">
+      <p class="footernote">
+        Site design Copyright &copy; Dogsbody Ltd; <a href="http://creativecommons.org/licenses/by/4.0/">some rights
+          reserved.</a>
+        Find us at
+      </p>
+      <p class="footernote"><a href="/attribution/">Attribution of Licensed Works</a></p>
+      <p class="footernote"><a href="/acknowledgements/">Acknowledgements</a></p>
+    </div>
+  </div>
 </body>
+
 </html>
